@@ -25,7 +25,7 @@ class threats : public Smartplayer
 
 
 		threats() {
-			K = 4;
+			test_init();
 			 threat_counts.resize(K + 1);
 			 for ( auto i : threat_counts ) i.resize(2);
 		
