@@ -21,7 +21,7 @@ class threats : public Smartplayer
 		
 		/* Running tally of threats for both players */
 	std::vector<std::vector <int>> threat_counts;
-	myline line[];
+	std::vector<myline> line;
 
 
 		threats() {
@@ -290,7 +290,22 @@ int threats_ai(movetype TYPE)
 
 };
 
-
+	virtual float addheuristic()
+	{
+		    auto val1=count_connections();
+            auto val2=myspaces();
+            auto val3=my_seqs();
+            auto val4=their_seqs();
+			float val5=(float)threats_ai(MY_PIECE);
+			float val6=(float)threats_ai(OPPONENT_PIECE);
+#if LOGGING3
+            f<<"val is  "<<val1<<std::endl;
+            print_board();
+#endif
+            if (moves_left<=8)
+                return (val1);
+            return 2*val1+2*val2+val3-val4+val5-val6;
+	};
 };
 
 
